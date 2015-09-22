@@ -77,8 +77,12 @@ public class MainActivity extends Activity implements SensorEventListener {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == SCAN_QR_CODE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                String logMsg = intent.getStringExtra("SCAN_RESULT");
-                // Weiterverarbeitung..
+                //String logMsg = intent.getStringExtra("SCAN_RESULT");
+                String logMsg = "{\n" +
+                        "  \"task\": \"Metalldetektor\",\n" +
+                        "  \"solution\": \"$Lösungswort\"\n" +
+                        "}";
+                log(logMsg);
             }
         }
     }
@@ -108,8 +112,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
         // Achtung, je nach App wird etwas anderes eingetragen
-        String logmessage = "";
-        intent.putExtra("ch.appquest.logmessage", logmessage);
+        intent.putExtra("ch.appquest.logmessage", qrCode);
 
         startActivity(intent);
     }
